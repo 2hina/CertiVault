@@ -1,18 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CertiVault</title>
-    <!-- Load Tailwind CSS via CDN for rapid styling -->
+    <!--
+        We are loading Tailwind CSS directly from the CDN for quick styling.
+        The `Inter` font is also set here for aesthetics.
+    -->
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <!-- The root element where the React application will be rendered -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the top */
+            min-height: 100vh;
+            padding-top: 2rem;
+            margin: 0;
+        }
+    </style>
+    <title>CertiVault - Secure Verification</title>
+</head>
+<body>
+    <!-- 
+        The React app will be injected into this div. 
+        The styles in HashGenerator.jsx will take over the layout and centering.
+    -->
     <div id="root"></div>
-
-    <!-- The actual entry point script required by Vite to load React -->
-    <script type="module" src="/src/main.jsx"></script>
     
-  </body>
+    <!-- 
+        CRITICAL FIX: Removed the leading slash (/) from the path to fix 
+        the Rollup resolution error during the Vercel build process.
+    -->
+    <script type="module" src="src/main.jsx"></script>
+</body>
 </html>
