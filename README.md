@@ -3,9 +3,14 @@
 My Individual Implementation of the Certificate Verification System
 
 Developer: Urvee Sharma
+
 Project: CertiVault (Individual Contribution)
 
-🌐 Live Website • 💻 Source Code • 👔 LinkedIn
+🌐 Live Website : https://certivault-production.up.railway.app/
+
+• 💻 Source Code : https://github.com/2hina/certivault
+
+• 👔 LinkedIn : www.linkedin.com/in/urvee-sharma
 
 </div>
 📋 About My Project
