@@ -175,26 +175,47 @@ Monitor system status
 text
 
 certivault-urvee/
+
 ├── app.py                    # Main Flask application
+
 ├── requirements.txt          # Python dependencies
+
 ├── Procfile                 # Railway deployment config
+
 ├── runtime.txt              # Python version spec
+
 │
+
 ├── templates/               # UI Templates (My Design)
+
 │   ├── layout.html         # Base template with navigation
+
 │   ├── index.html          # Landing page with animations
+
 │   ├── upload.html         # Certificate upload interface
+
 │   ├── verify.html         # Multi-method verification
+
 │   └── dashboard.html      # Admin dashboard
+
 │
+
 ├── static/                  # Frontend Assets
+
 │   ├── css/
+
 │   │   └── style.css       # Custom CSS with animations
+
 │   └── js/
+
 │       └── main.js         # Interactive features
+
 │
+
 ├── uploads/                 # Temporary file storage
+
 └── database/               # SQLite database
+
     └── certificates.db     # Certificate records
     
 🔧 Troubleshooting
