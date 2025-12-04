@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - CertiVault{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Secure Academic Certificate Verification</h1>
+        <p class="subtitle">Web-3 Based, Tamper-Proof, and Decentralized Certificate Authentication System</p>
+        
+        <div class="problem-statement">
+            <h2><i class="fas fa-exclamation-triangle"></i> Problem Statement</h2>
+            <div class="problems">
+                <div class="problem-card">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>Fake Certificates</h3>
+                    <p>Certificates submitted online can be easily faked and manipulated</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Slow Verification</h3>
+                    <p>Manual verifications are time-consuming and inefficient</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-university"></i>
+                    <h3>No Proper System</h3>
+                    <p>Lack of robust verification system for academic certification</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="solution-section">
+            <h2><i class="fas fa-lightbulb"></i> Our Solution</h2>
+            <div class="solution-features">
+                <div class="feature">
+                    <i class="fas fa-globe"></i>
+                    <h3>Web-3 Based Platform</h3>
+                    <p>Decentralized verification using blockchain principles</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-database"></i>
+                    <h3>IPFS Storage</h3>
+                    <p>Tamper-proof certificate storage with IPFS integration</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>QR Code Verification</h3>
+                    <p>Instant verification through QR codes and hash links</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-low-vision"></i>
+                    <h3>Low Cost</h3>
+                    <p>Affordable solution for corporations and institutions</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="{{ url_for('upload_certificate') }}" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Upload Certificate
+            </a>
+            <a href="{{ url_for('verify_certificate') }}" class="btn btn-secondary">
+                <i class="fas fa-check-circle"></i> Verify Certificate
+            </a>
+        </div>
+
+        <div class="how-it-works">
+            <h2><i class="fas fa-cogs"></i> How Hashing Works</h2>
+            <div class="hashing-process">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Certificate Input</h3>
+                    <p>Upload certificate image or document</p>
+                </div>
+                <div class="process-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>SHA-256 Algorithm</h3>
+                    <p>Generate unique cryptographic hash</p>
+                </div>
+                <div class="process-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Hash Value Output</h3>
+                    <p>Tamper-proof digital fingerprint</p>
+                </div>
+                <div class="process-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>QR Code Generation</h3>
+                    <p>Create verifiable QR code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

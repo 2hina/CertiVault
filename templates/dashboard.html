@@ -1,0 +1,218 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard - CertiVault{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1><i class="fas fa-chart-bar"></i> Certificate Dashboard</h1>
+    <p class="subtitle">Manage and monitor all certificates in the system</p>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-certificate"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ certificates|length }}</h3>
+                <p>Total Certificates</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ certificates|length }}</h3>
+                <p>Verified Certificates</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-university"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ certificates|map(attribute='issuer')|unique|list|length }}</h3>
+                <p>Unique Issuers</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ certificates|map(attribute='recipient')|unique|list|length }}</h3>
+                <p>Unique Recipients</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="certificates-table-container">
+        <div class="table-header">
+            <h2><i class="fas fa-list"></i> All Certificates</h2>
+            <div class="table-actions">
+                <input type="text" id="searchInput" placeholder="Search certificates...">
+                <button class="btn btn-small" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="certificates-table" id="certificatesTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Certificate Hash</th>
+                        <th>Issuer</th>
+                        <th>Recipient</th>
+                        <th>Issue Date</th>
+                        <th>QR Code</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cert in certificates %}
+                    <tr>
+                        <td>{{ cert.id }}</td>
+                        <td class="hash-cell">
+                            <code>{{ cert.hash[:16] }}...</code>
+                            <button onclick="copyHash('{{ cert.hash }}')" class="copy-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </td>
+                        <td>{{ cert.issuer }}</td>
+                        <td>{{ cert.recipient }}</td>
+                        <td>{{ cert.issue_date }}</td>
+                        <td>
+                            {% if cert.qr_code %}
+                            <img src="{{ url_for('static', filename=cert.qr_code) }}" 
+                                 alt="QR Code" class="table-qr">
+                            {% else %}
+                            <button onclick="generateQR('{{ cert.hash }}')" class="btn btn-small">
+                                Generate QR
+                            </button>
+                            {% endif %}
+                        </td>
+                        <td class="action-cells">
+                            <a href="{{ url_for('api_verify', hash_value=cert.hash) }}" 
+                               target="_blank" class="btn-action" title="API Verify">
+                                <i class="fas fa-code"></i>
+                            </a>
+                            <a href="{{ url_for('verify_certificate') }}?hash={{ cert.hash }}" 
+                               class="btn-action" title="Verify">
+                                <i class="fas fa-check"></i>
+                            </a>
+                            <button onclick="showDetails('{{ cert.hash }}')" 
+                                    class="btn-action" title="Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="future-scope">
+        <h2><i class="fas fa-rocket"></i> Future Scope & Integration</h2>
+        <div class="scope-cards">
+            <div class="scope-card">
+                <div class="scope-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3>Backend Plugin</h3>
+                <p>Automatic IPFS uploads when issuer generates certificates using Python/Node.js</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3>International Verification</h3>
+                <p>Global universities can access and verify certificates worldwide</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <h3>LinkedIn Integration</h3>
+                <p>Directly link certificate hashes with professional profiles</p>
+            </div>
+            <div class="scope-card">
+                <div class="scope-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Government Integration</h3>
+                <p>Partner with education boards for official certificate uploads</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function copyHash(hash) {
+    navigator.clipboard.writeText(hash).then(() => {
+        alert('Hash copied to clipboard!');
+    });
+}
+
+function generateQR(hash) {
+    window.open(`/generate_qr/${hash}`, '_blank');
+}
+
+function showDetails(hash) {
+    alert(`Certificate Hash: ${hash}\n\nDetailed view would show complete certificate information.`);
+}
+
+function exportData() {
+    // Simple export implementation
+    const table = document.getElementById('certificatesTable');
+    let csv = [];
+    
+    // Get headers
+    const headers = [];
+    table.querySelectorAll('thead th').forEach(th => {
+        if (th.textContent !== 'Actions' && th.textContent !== 'QR Code') {
+            headers.push(th.textContent);
+        }
+    });
+    csv.push(headers.join(','));
+    
+    // Get data
+    table.querySelectorAll('tbody tr').forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = [];
+        
+        cells.forEach((cell, index) => {
+            if (index !== 5 && index !== 6) { // Skip QR and Actions columns
+                rowData.push(cell.textContent.trim());
+            }
+        });
+        csv.push(rowData.join(','));
+    });
+    
+    // Download CSV
+    const csvContent = "data:text/csv;charset=utf-8," + csv.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "certificates_export.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('#certificatesTable tbody tr');
+    
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+});
+</script>
+{% endblock %}

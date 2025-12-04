@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block title %}Upload Certificate - CertiVault{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1><i class="fas fa-upload"></i> Upload Certificate</h1>
+    <p class="subtitle">Securely upload academic certificates for tamper-proof storage</p>
+
+    <div class="upload-form-container">
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <div class="form-group">
+                <label for="issuer_name"><i class="fas fa-university"></i> Issuer Name</label>
+                <input type="text" id="issuer_name" name="issuer_name" placeholder="Enter institution name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="recipient_name"><i class="fas fa-user-graduate"></i> Recipient Name</label>
+                <input type="text" id="recipient_name" name="recipient_name" placeholder="Enter certificate recipient name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="certificate"><i class="fas fa-file-certificate"></i> Certificate File</label>
+                <div class="file-upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop certificate file or <span>browse</span></p>
+                    <p class="file-types">Supported: PNG, JPG, JPEG, PDF</p>
+                    <input type="file" id="certificate" name="certificate" accept=".png,.jpg,.jpeg,.pdf" required>
+                </div>
+                <div id="fileName"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-shield-alt"></i> Secure Upload
+            </button>
+        </form>
+
+        <div class="upload-info">
+            <h3><i class="fas fa-info-circle"></i> What happens after upload?</h3>
+            <div class="info-steps">
+                <div class="info-step">
+                    <div class="step-icon">1</div>
+                    <div>
+                        <h4>Hash Generation</h4>
+                        <p>SHA-256 hash is generated from your certificate</p>
+                    </div>
+                </div>
+                <div class="info-step">
+                    <div class="step-icon">2</div>
+                    <div>
+                        <h4>Digital Signature</h4>
+                        <p>Issuer's digital signature is added for authenticity</p>
+                    </div>
+                </div>
+                <div class="info-step">
+                    <div class="step-icon">3</div>
+                    <div>
+                        <h4>QR Code Creation</h4>
+                        <p>Unique QR code is generated for easy verification</p>
+                    </div>
+                </div>
+                <div class="info-step">
+                    <div class="step-icon">4</div>
+                    <div>
+                        <h4>Blockchain Storage</h4>
+                        <p>Certificate hash is stored in tamper-proof database</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if certificate_hash %}
+    <div class="upload-success">
+        <div class="success-header">
+            <i class="fas fa-check-circle"></i>
+            <h2>Certificate Successfully Secured!</h2>
+        </div>
+        
+        <div class="certificate-details">
+            <div class="detail-card">
+                <h3><i class="fas fa-fingerprint"></i> Certificate Hash</h3>
+                <div class="hash-display" id="hashDisplay">
+                    {{ certificate_hash }}
+                </div>
+                <button onclick="copyHash()" class="btn btn-small">
+                    <i class="fas fa-copy"></i> Copy Hash
+                </button>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-qrcode"></i> QR Code</h3>
+                <img src="{{ url_for('static', filename=qr_code) }}" alt="QR Code" class="qr-code">
+                <a href="{{ url_for('static', filename=qr_code) }}" download class="btn btn-small">
+                    <i class="fas fa-download"></i> Download QR
+                </a>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-info-circle"></i> Certificate Details</h3>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span class="detail-label">Issuer:</span>
+                        <span class="detail-value">{{ issuer_name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Recipient:</span>
+                        <span class="detail-value">{{ recipient_name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Verification URL:</span>
+                        <a href="{{ url_for('verify_certificate') }}" class="detail-link">
+                            {{ request.host_url }}verify
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="verification-instructions">
+            <h3><i class="fas fa-shield-check"></i> How to Verify</h3>
+            <div class="instructions">
+                <div class="instruction">
+                    <i class="fas fa-hashtag"></i>
+                    <p>Use the hash above to verify on our platform</p>
+                </div>
+                <div class="instruction">
+                    <i class="fas fa-qrcode"></i>
+                    <p>Scan the QR code with any QR scanner</p>
+                </div>
+                <div class="instruction">
+                    <i class="fas fa-link"></i>
+                    <p>Share the verification link with employers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.querySelector('input[type="file"]');
+    const fileName = document.getElementById('fileName');
+
+    uploadArea.addEventListener('click', () => fileInput.click());
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        fileInput.files = e.dataTransfer.files;
+        updateFileName();
+    });
+
+    fileInput.addEventListener('change', updateFileName);
+
+    function updateFileName() {
+        if (fileInput.files.length > 0) {
+            fileName.textContent = `Selected: ${fileInput.files[0].name}`;
+            fileName.style.display = 'block';
+        }
+    }
+});
+
+function copyHash() {
+    const hashText = document.getElementById('hashDisplay').textContent;
+    navigator.clipboard.writeText(hashText).then(() => {
+        alert('Hash copied to clipboard!');
+    });
+}
+</script>
+{% endblock %}
