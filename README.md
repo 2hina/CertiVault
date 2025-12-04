@@ -1,74 +1,122 @@
-CertiVault
-🌐 
+🌐 CertiVault
+Decentralized Academic Certificate Verification System
 
-Live Demo:https://certivault-production.up.railway.app/
+A Web-3 inspired platform that enables secure, tamper-proof, and instant verification of academic certificates using hashing and blockchain-like principles.
 
-🎯 Problem Statement
+🔗 Live Demo: https://certivault-production.up.railway.app/
 
-Academic certificates can be easily faked online. 
+📦 GitHub Repo: https://github.com/2hina/certivault
 
-Manual verification is slow and inefficient.
+🚨 Problem Statement
 
-No proper system exists for certificate authentication.
+Academic certificates today face major issues:
+
+❌ They can be easily faked or manipulated online
+
+⏳ Manual verification is slow and inefficient
+
+🪪 No standardized system exists for secure certificate authentication
 
 💡 Our Solution
 
-Web-3 based platform that verifies academic certificates using blockchain principles:
+CertiVault is a Web-3 based verification platform that ensures certificates are:
 
-Tamper-proof certificate storage
+🔐 Tamper-proof using SHA-256 hashing
 
-QR code & hash verification
+🧾 Digitally signed & linked to unique identifiers
 
-Low-cost for corporate users
+📲 Instantly verifiable via QR codes
 
-Decentralized approach
+💸 Affordable for institutions and organizations
 
-✨ Features
+🌐 Built with decentralized verification principles
 
-Upload Certificates - Secure storage with SHA-256 hashing
+✨ Key Features
 
-Generate QR Codes - Instant verification codes
+🔼 Upload Certificates
 
-Multiple Verification Methods - Hash, upload, or QR scan
+Secure file storage
 
-Dashboard - Manage all certificates
+Automatic SHA-256 hash generation
 
-Responsive Design - Works on all devices
+🔍 Multiple Verification Methods
 
-🛠️ Tech Stack
+Verify by Hash
 
-Backend: Python, Flask, SQLite
+Verify via File Upload
 
-Frontend: HTML, CSS, JavaScript
+Verify via QR Code Scan
 
-Security: SHA-256, Digital Signatures
+🧾 QR Code Generation
 
-Deployment: Railway
+Each certificate gets a unique QR code for quick verification
 
-🚀 Quick Start
+📊 Dashboard
+
+Track, manage, and view all uploaded certificates
+
+
+🛠 Tech Stack
+
+ Layer             	Technologies
+ 
+Backend	        Python, Flask, SQLite
+
+Frontend      	HTML, CSS, JavaScript
+
+Security	      SHA-256 Hashing, Digital Signatures
+
+Deployment	    Railway
+
+🚀 Getting Started
+
+Clone the repository:
 
 git clone https://github.com/2hina/certivault.git
-
 cd certivault
 
+
+Install dependencies:
+
 pip install -r requirements.txt
+
+
+Run the application:
 
 python app.py
 
 📱 How to Use
 
-Upload Certificate → Get unique hash & QR code
+Upload Certificate
+→ System generates a unique hash & QR code
 
-Verify Certificate → Use hash, file upload, or QR scan
+Verify Certificate
+→ Use hash, QR code, or file upload
 
-Dashboard → View all certificates
+Use Dashboard
+→ Manage all stored certificates easily
+
+🔒 Security
+
+✔ SHA-256 hashing for tamper-proof storage
+
+✔ Digital signatures for authenticity
+
+✔ Immutable verification ensures integrity
 
 🔮 Future Scope
 
-IPFS integration for decentralized storage
+📦 IPFS integration for decentralized certificate storage
+-🔗 LinkedIn verification integration
 
-LinkedIn profile verification
+🏛 partnerships with education boards & government bodies
 
-Government education board partnerships
+🌍 Access for international universities
 
-International university access
+🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the Issues and Pull Requests sections.
+📱 Fully Responsive Design
+
+Works on all devices: mobile, tablet & desktop
