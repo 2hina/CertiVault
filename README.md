@@ -58,15 +58,13 @@ Track, manage, and view all uploaded certificates
 
 🛠 Tech Stack
 
- Layer             	Technologies
- 
-Backend	        Python, Flask, SQLite
+Backend :	        Python, Flask, SQLite
 
-Frontend      	HTML, CSS, JavaScript
+Frontend :      	HTML, CSS, JavaScript
 
-Security	      SHA-256 Hashing, Digital Signatures
+Security :	      SHA-256 Hashing, Digital Signatures
 
-Deployment	    Railway
+Deployment :	    Railway
 
 🚀 Getting Started
 
