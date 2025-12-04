@@ -5,7 +5,11 @@ Live Demo:https://certivault-production.up.railway.app/
 
 🎯 Problem Statement
 
-Academic certificates can be easily faked online. Manual verification is slow and inefficient. No proper system exists for certificate authentication.
+Academic certificates can be easily faked online. 
+
+Manual verification is slow and inefficient.
+
+No proper system exists for certificate authentication.
 
 💡 Our Solution
 
@@ -44,8 +48,11 @@ Deployment: Railway
 🚀 Quick Start
 
 git clone https://github.com/YOUR_USERNAME/certivault.git
+
 cd certivault
+
 pip install -r requirements.txt
+
 python app.py
 
 📱 How to Use
