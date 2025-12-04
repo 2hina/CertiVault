@@ -75,7 +75,8 @@ Database protection against injection
 
 🛠️ Tech Stack I Used
 
-Backend Development
+**Backend Development:**
+
 Python 3.9+ with Flask framework
 
 SQLite for lightweight database
@@ -84,7 +85,8 @@ Cryptography Library for security features
 
 Pillow & qrcode for image processing
 
-Frontend Development
+**Frontend Development:**
+
 HTML5 with semantic markup
 
 CSS3 with Flexbox/Grid layouts
@@ -93,7 +95,8 @@ Vanilla JavaScript for interactivity
 
 Font Awesome icons
 
-DevOps & Deployment
+**DevOps & Deployment:**
+
 Railway for cloud deployment
 
 Gunicorn as production WSGI server
@@ -170,63 +173,6 @@ Generate new QR codes
 
 Monitor system status
 
-🏗️ Project Structure
-
-text
-
-certivault-urvee/
-
-├── app.py                    # Main Flask application
-
-├── requirements.txt          # Python dependencies
-
-├── Procfile                 # Railway deployment config
-
-├── runtime.txt              # Python version spec
-
-│
-
-├── templates/               # UI Templates (My Design)
-
-│   ├── layout.html         # Base template with navigation
-
-│   ├── index.html          # Landing page with animations
-
-│   ├── upload.html         # Certificate upload interface
-
-│   ├── verify.html         # Multi-method verification
-
-│   └── dashboard.html      # Admin dashboard
-
-│
-
-├── static/                  # Frontend Assets
-
-│   ├── css/
-
-│   │   └── style.css       # Custom CSS with animations
-
-│   └── js/
-
-│       └── main.js         # Interactive features
-
-│
-
-├── uploads/                 # Temporary file storage
-
-└── database/               # SQLite database
-
-    └── certificates.db     # Certificate records
-    
-🔧 Troubleshooting
-
-Common Issues & Solutions:
-
-Issue                   	Platform	                 Solution
-Port 5000 in use	          All	                 Change port in app.py or kill process
-Module not found	         Windows	             Run as Admin: pip install --user -r requirements.txt
-SQLite errors           	macOS/Linux	           Check file permissions: chmod 755 database/
-QR not generating	           All	               Install Pillow: pip install Pillow --upgrade
 
 Need Help?
 
