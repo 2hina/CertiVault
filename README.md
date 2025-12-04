@@ -14,6 +14,7 @@ Project: CertiVault (Individual Contribution)
 
 </div>
 📋 About My Project
+
 This is my individual implementation of CertiVault, developed as part of a dual-project collaboration. While working on the same problem statement with another team member, I built this complete, production-ready certificate verification system from scratch.
 
 🎯 My Solution Approach
