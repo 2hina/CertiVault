@@ -1,120 +1,244 @@
-🌐 CertiVault
-Decentralized Academic Certificate Verification System
+ **CertiVault** 
+ 
+My Individual Implementation of the Certificate Verification System
 
-A Web-3 inspired platform that enables secure, tamper-proof, and instant verification of academic certificates using hashing and blockchain-like principles.
+Developer: Urvee Sharma
+Project: CertiVault (Individual Contribution)
 
-🔗 Live Demo: https://certivault-production.up.railway.app/
+🌐 Live Website • 💻 Source Code • 👔 LinkedIn
 
-📦 GitHub Repo: https://github.com/2hina/certivault
+</div>
+📋 About My Project
+This is my individual implementation of CertiVault, developed as part of a dual-project collaboration. While working on the same problem statement with another team member, I built this complete, production-ready certificate verification system from scratch.
 
-🚨 Problem Statement
+🎯 My Solution Approach
 
-Academic certificates today face major issues:
+Architecture :	Full-stack Flask application with modular design
 
-❌ They can be easily faked or manipulated online
+Security :	SHA-256 hashing + simulated digital signatures
 
-⏳ Manual verification is slow and inefficient
+User Experience :	Modern responsive UI with intuitive workflow
 
-🪪 No standardized system exists for secure certificate authentication
+Deployment :	Production-ready on Railway with CI/CD
 
-💡 Our Solution
+🚀 Live Deployment
 
-CertiVault is a Web-3 based verification platform that ensures certificates are:
+🌐 Live Website: https://certivault-production.up.railway.app
 
-🔐 Tamper-proof using SHA-256 hashing
+Status: ✅ Fully Operational
 
-🧾 Digitally signed & linked to unique identifiers
+Platform: Railway
 
-📲 Instantly verifiable via QR codes
+Uptime: 24/7
 
-💸 Affordable for institutions and organizations
+SSL: Enabled (HTTPS)
 
-🌐 Built with decentralized verification principles
+✨ My Features
 
-✨ Key Features
+🔐 Core Features
 
-🔼 Upload Certificates
+Smart Certificate Upload with drag & drop interface
 
-Secure file storage
+SHA-256 Cryptographic Hashing for tamper-proof verification
 
-Automatic SHA-256 hash generation
+Dynamic QR Code Generation for each certificate
 
-🔍 Multiple Verification Methods
+Three Verification Methods: Hash, File Upload, and QR Scan
 
-Verify by Hash
+Real-time Dashboard with certificate management
 
-Verify via File Upload
+🎨 UI/UX Excellence
 
-Verify via QR Code Scan
+Modern Glass Morphism Design
 
-🧾 QR Code Generation
+Fully Responsive across all devices
 
-Each certificate gets a unique QR code for quick verification
+Interactive Animations and smooth transitions
 
-📊 Dashboard
+Intuitive Workflow with guided steps
 
-Track, manage, and view all uploaded certificates
+🛡️ Security Implementation 
 
+File integrity validation
 
-🛠 Tech Stack
+Secure session management
 
-Backend :	        Python, Flask, SQLite
+Input sanitization and validation
 
-Frontend :      	HTML, CSS, JavaScript
+Database protection against injection
 
-Security :	      SHA-256 Hashing, Digital Signatures
+🛠️ Tech Stack I Used
 
-Deployment :	    Railway
+Backend Development
+Python 3.9+ with Flask framework
 
-🚀 Getting Started
+SQLite for lightweight database
 
-Clone the repository:
+Cryptography Library for security features
 
+Pillow & qrcode for image processing
+
+Frontend Development
+HTML5 with semantic markup
+
+CSS3 with Flexbox/Grid layouts
+
+Vanilla JavaScript for interactivity
+
+Font Awesome icons
+
+DevOps & Deployment
+Railway for cloud deployment
+
+Gunicorn as production WSGI server
+
+Git/GitHub for version control
+
+Cross-platform compatibility
+
+📦 Installation (All Platforms)
+
+**Windows**
+
+powershell-
+
+# Clone my repository
 git clone https://github.com/2hina/certivault.git
 cd certivault
 
+# Setup virtual environment
+python -m venv venv
+venv\Scripts\activate
 
-Install dependencies:
-
+# Install dependencies
 pip install -r requirements.txt
 
-
-Run the application:
-
+# Run my application
 python app.py
 
-📱 How to Use
+**macOS/Linux**
 
-Upload Certificate
-→ System generates a unique hash & QR code
+bash-
 
-Verify Certificate
-→ Use hash, QR code, or file upload
+# Clone repository
+git clone https://github.com/2hina/certivault.git
+cd certivault
 
-Use Dashboard
-→ Manage all stored certificates easily
+# Setup environment
+python3 -m venv venv
+source venv/bin/activate
 
-🔒 Security
+# Install packages
+pip3 install -r requirements.txt
 
-✔ SHA-256 hashing for tamper-proof storage
+# Launch application
+python3 app.py
 
-✔ Digital signatures for authenticity
+🎮 Quick Usage Guide
 
-✔ Immutable verification ensures integrity
+📤 Upload a Certificate
 
-🔮 Future Scope
+Visit the Upload page
 
-📦 IPFS integration for decentralized certificate storage
--🔗 LinkedIn verification integration
+Fill in issuer & recipient details
 
-🏛 partnerships with education boards & government bodies
+Upload any certificate file
 
-🌍 Access for international universities
+Get unique hash & QR code instantly
 
-🤝 Contributing
+🔍 Verify Authenticity
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check the Issues and Pull Requests sections.
-📱 Fully Responsive Design
+Method 1: Enter the 64-character hash
 
-Works on all devices: mobile, tablet & desktop
+Method 2: Upload the certificate file
+
+Method 3: Scan the generated QR code
+
+📊 Manage Certificates
+
+View all uploaded certificates
+
+Access verification history
+
+Generate new QR codes
+
+Monitor system status
+
+🏗️ Project Structure
+
+text
+
+certivault-urvee/
+├── app.py                    # Main Flask application
+├── requirements.txt          # Python dependencies
+├── Procfile                 # Railway deployment config
+├── runtime.txt              # Python version spec
+│
+├── templates/               # UI Templates (My Design)
+│   ├── layout.html         # Base template with navigation
+│   ├── index.html          # Landing page with animations
+│   ├── upload.html         # Certificate upload interface
+│   ├── verify.html         # Multi-method verification
+│   └── dashboard.html      # Admin dashboard
+│
+├── static/                  # Frontend Assets
+│   ├── css/
+│   │   └── style.css       # Custom CSS with animations
+│   └── js/
+│       └── main.js         # Interactive features
+│
+├── uploads/                 # Temporary file storage
+└── database/               # SQLite database
+    └── certificates.db     # Certificate records
+    
+🔧 Troubleshooting
+
+Common Issues & Solutions:
+
+Issue                   	Platform	                 Solution
+Port 5000 in use	          All	                 Change port in app.py or kill process
+Module not found	         Windows	             Run as Admin: pip install --user -r requirements.txt
+SQLite errors           	macOS/Linux	           Check file permissions: chmod 755 database/
+QR not generating	           All	               Install Pillow: pip install Pillow --upgrade
+
+Need Help?
+
+Check the deployment logs on Railway
+
+Verify Python version (python --version)
+
+Ensure all dependencies are installed
+
+Clear browser cache if UI issues occur
+
+🎯 What Makes My Implementation Unique
+
+Technical Excellence
+
+Clean, modular code architecture
+
+Comprehensive error handling
+
+Production-ready deployment pipeline
+
+Cross-platform compatibility
+
+User-Centric Design
+
+Intuitive user interface
+
+Real-time feedback mechanisms
+
+Mobile-responsive design
+
+Accessibility considerations
+
+Innovative Features
+
+Simulated blockchain principles
+
+Future-ready architecture for Web-3 integration
+
+Scalable database design
+
+API-ready endpoints
