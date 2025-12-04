@@ -47,7 +47,7 @@ Deployment: Railway
 
 🚀 Quick Start
 
-git clone https://github.com/YOUR_USERNAME/certivault.git
+git clone https://github.com/2hina/certivault.git
 
 cd certivault
 
